@@ -1,13 +1,11 @@
+var currentTime = moment().hours();
 var text = $('.textInput');
 var saveBtn = $('.saveBtn');
 
 $("#currentDay").text(moment().format('dddd, MMMM Do'));
 
-var currentTime = moment().hours();
-
 $('.time').each(function(){
     var HTMLTime = parseInt($(this).attr('id').split('-')[1])
-    
     if (HTMLTime < currentTime) {
         $(this.children[1]).addClass('past')
     }
@@ -25,6 +23,7 @@ saveBtn.on('click',function(event){
     var userInput = $(this).siblings('.textInput').val()
     var time = $(this).parent().attr('id')
     localStorage.setItem(time,userInput);  
+    document.getElementById("userInput").innerHTML = text.userInput;
 })
 $('#hour-9 .textInput').val(localStorage.getItem('hour-9'))
 $('#hour-10 .textInput').val(localStorage.getItem('hour-10'))
